@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 export const Form = () => {
@@ -57,21 +58,23 @@ export const Form = () => {
             <div
                 className='flex flex-col items-center justify-center w-96 bg-white rounded-md  pb-10 pr-10 pl-10 mt-5'
             >
-
-
                 <h1
                     className='text-xs text-gray-500'
                 >
                     {"Don't have an account?"}
                 </h1>
-                <button
-                    className='w-52 h-10 bg-white rounded-3xl text-white border-2 border-gray-300  mt-5 '
+                <Link
+                    href='/register'
                 >
-                    <h2
-                        className='text-xs text-black'
-                    >      Create a Nintendo Account</h2>
+                    <button
+                        className='w-52 h-10 bg-white rounded-3xl text-white border-2 border-gray-300  mt-5 '
+                    >
+                        <h2
+                            className='text-xs text-black'
+                        >      Create a Nintendo Account</h2>
 
-                </button>
+                    </button>
+                </Link>
             </div>
         </div>
     )
