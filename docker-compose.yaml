@@ -1,7 +1,7 @@
 services:
-  Nintendo-DB:
+  animalcrossingdb:
     image: mongo:5.0.0
-    container_name: Nintendo-DB
+    container_name: animalcrossing-database
     ports:
       - 27017:27017
     volumes:
