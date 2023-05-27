@@ -1,7 +1,43 @@
+'use client';
 import Link from 'next/link'
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { LoginContext } from '@/context';
+import { useRouter } from 'next/navigation';
 
 const RegisterPage = () => {
+
+    const { onRegisterUser, isLoggin } = useContext(LoginContext);
+    const { push } = useRouter();
+
+    const [infoInputUser, setInfoInputUser] = useState({
+        email: '',
+        password: '',
+        name: '',
+    })
+
+    const onChangeValue = (e: { target: { name: any; value: any; }; }) => {
+        setInfoInputUser({
+            ...infoInputUser,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const onSubmit = async () => {
+        await onRegisterUser(infoInputUser.email, infoInputUser.password, infoInputUser.name)
+
+        setInfoInputUser({
+            email: '',
+            password: '',
+            name: '',
+        })
+
+        if (isLoggin) {
+            push('/')
+        }
+    }
+
+
+
     return (
         <div className='flex min-h-screen flex-col items-center justify-center  bg-gray-100'>
 
@@ -23,10 +59,12 @@ const RegisterPage = () => {
                     </label>
                     <input
                         type="text"
-                        name="username"
-                        id="username"
+                        name="name"
+                        id="name"
                         className='w-80 h-12 bg-gray-100 rounded-md shadow-md border-2 border-gray-300 mt-5 '
-                        placeholder=' Username'
+                        placeholder=' name'
+                        onChange={(e) => onChangeValue(e)}
+                        value={infoInputUser.name}
                     />
 
 
@@ -41,6 +79,8 @@ const RegisterPage = () => {
                         id="email"
                         className='w-80 h-12 bg-gray-100 rounded-md shadow-md border-2 border-gray-300 mt-5 '
                         placeholder='  Email Address'
+                        onChange={(e) => onChangeValue(e)}
+                        value={infoInputUser.email}
                     />
 
                     <label
@@ -55,6 +95,8 @@ const RegisterPage = () => {
                         id="password"
                         className='w-80 h-12 bg-gray-100 rounded-md shadow-md border-2 border-gray-300 mt-5 '
                         placeholder='  Password'
+                        onChange={(e) => onChangeValue(e)}
+                        value={infoInputUser.password}
                     />
 
 
@@ -71,9 +113,10 @@ const RegisterPage = () => {
                         Forgot your password?
                     </a>
                     <button
+                        onClick={onSubmit}
                         className='w-36 h-10 bg-rose-700 rounded-3xl  shadow-md text-white'
                     >
-                        Sign In
+                        Register
                     </button>
 
                 </div>

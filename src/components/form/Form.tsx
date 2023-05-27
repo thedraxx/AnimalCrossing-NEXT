@@ -1,7 +1,39 @@
+'use client'
 import Link from 'next/link'
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { LoginContext } from '@/context';
+import { useRouter } from 'next/navigation';
 
 export const Form = () => {
+    const { onLoginUser, isLoggin } = useContext(LoginContext);
+    const { push } = useRouter();
+
+    const [infoInputUser, setInfoInputUser] = useState({
+        email: '',
+        password: ''
+    })
+
+    const onChangeValue = (e: { target: { name: any; value: any; }; }) => {
+        setInfoInputUser({
+            ...infoInputUser,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const onSubmit = async () => {
+        await onLoginUser(infoInputUser.email, infoInputUser.password)
+
+        setInfoInputUser({
+            email: '',
+            password: ''
+        })
+
+        if (isLoggin) {
+            push('/home')
+        }
+    }
+
+
     return (
         <div
             className='flex flex-col items-center  w-96  bg-white  rounded-xl shadow-xl'
@@ -21,6 +53,8 @@ export const Form = () => {
                     id="email"
                     className='w-80 h-12 bg-gray-100 rounded-md shadow-md border-2 border-gray-300 mt-5 '
                     placeholder='  Email Address/Sign-In ID'
+                    onChange={(e) => onChangeValue(e)}
+                    value={infoInputUser.email}
                 />
 
                 <label
@@ -35,6 +69,8 @@ export const Form = () => {
                     id="password"
                     className='w-80 h-12 bg-gray-100 rounded-md shadow-md border-2 border-gray-300 mt-5 '
                     placeholder='  Password'
+                    onChange={(e) => onChangeValue(e)}
+                    value={infoInputUser.password}
                 />
             </form>
 
@@ -49,6 +85,7 @@ export const Form = () => {
                 </a>
                 <button
                     className='w-36 h-10 bg-rose-700 rounded-3xl  shadow-md text-white'
+                    onClick={onSubmit}
                 >
                     Sign In
                 </button>
