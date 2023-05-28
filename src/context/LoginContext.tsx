@@ -3,7 +3,8 @@ import { createContext } from 'react';
 
 export interface UIContextProps {
     isLoggin: boolean;
-    infoUser: IUser[]
+    infoUser: IUser[];
+    isRegister: boolean;
 
     // Methods
     onLoginUser: (email: string, passwordHash: string) => Promise<any>;

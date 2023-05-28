@@ -1,7 +1,21 @@
+"use client"
 import { Form } from '@/components/form'
-import Image from 'next/image'
+import { useEffect } from 'react'
+import React, { useContext, useState } from 'react'
+import { LoginContext } from '@/context';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+  const { isLoggin } = useContext(LoginContext);
+  const { push } = useRouter();
+
+  useEffect(() => {
+    if (isLoggin) {
+      push('/home');
+    }
+  }, [isLoggin])
+
+
   return (
     <main
       className="flex min-h-screen flex-col items-center justify-center  bg-gray-100"

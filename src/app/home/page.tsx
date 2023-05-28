@@ -1,11 +1,9 @@
-import React from 'react'
+import { LoginContext } from '@/context';
 
 const page = () => {
 
-
-
-
     return (
+
         <div>
 
 
@@ -18,5 +16,6 @@ const page = () => {
         </div>
     )
 }
+
 
 export default page

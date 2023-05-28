@@ -4,18 +4,13 @@ import bcrypt from "bcryptjs";
 import { jwt, validations } from '@/utils';
 import { NextRequest, NextResponse } from "next/server";
 
-  export async function POST(
-    req: NextRequest ,
-    res: NextResponse
-  ) {
+  export async function POST(req: NextRequest, res: NextResponse) {
   
       const {email,passwordHash, name = ""} = await req.json()
-  
   
       await db.connect();
       const user = await User.findOne({ email }).lean();
   
-    
       if (user) {
         db.disconnect();
         return NextResponse.json({ message: "Invalid credentials, user already Register"},{status:400});
@@ -37,7 +32,6 @@ import { NextRequest, NextResponse } from "next/server";
 
   const newUser = new User({
     email: email.toLowerCase(),
-    // TODO: arreglar bcrypt
     passwordHash: bcrypt.hashSync(passwordHash, 10),
     role: "client",
     name: name.toLowerCase(),
@@ -55,16 +49,17 @@ import { NextRequest, NextResponse } from "next/server";
 
   const token = jwt.signToken(_id, email);
 
-
   return NextResponse.json({ 
     token, // token: token
     user: {
       email,
       role: "client",
       name,
-    },},{
-            status:200
-    })}  
+    }},
+    { 
+      status:200
+    }
+)}  
 
     
 

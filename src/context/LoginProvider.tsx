@@ -7,13 +7,15 @@ import axios from 'axios';
 
 export interface LoginState {
     isLoggin: boolean;
-    infoUser: IUser[]
+    infoUser: IUser[];
+    isRegister: boolean;
 
 }
 
 const Login_INITIAL_STATE: LoginState = {
     isLoggin: false,
-    infoUser: []
+    infoUser: [],
+    isRegister: false
 };
 
 interface Props {
@@ -26,17 +28,13 @@ export const LoginProvider = ({ children }: Props) => {
 
 
     const onRegisterUser = async (email: string, passwordHash: string, name: string) => {
+
         try {
 
-            const { data } = await AnimalCrossingAPI.post('/register', { email, passwordHash, name });
-
-            const { user, token } = data;
-
-            Cookies.set('token', token);
+            await AnimalCrossingAPI.post('/register', { email, passwordHash, name });
 
             dispatch({
-                type: '[Login] - Login',
-                payload: user
+                type: '[Auth] - Register',
             });
 
             return {
@@ -70,13 +68,13 @@ export const LoginProvider = ({ children }: Props) => {
             Cookies.set('token', token);
 
             dispatch({
-                type: '[Login] - Login',
+                type: '[Auth] - Login',
                 payload: user
             });
 
             return {
                 hasError: false,
-                message: 'Usuario creado correctamente'
+                message: 'Usuario Logeado correctamente'
             }
 
         } catch (error) {
@@ -88,7 +86,7 @@ export const LoginProvider = ({ children }: Props) => {
             }
             return {
                 hasError: true,
-                message: 'Error desconocido, no se pudo crear el usuario'
+                message: 'Error desconocido, no se puede iniciar sesión'
             }
         }
     }
