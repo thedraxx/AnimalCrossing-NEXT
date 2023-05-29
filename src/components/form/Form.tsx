@@ -53,6 +53,7 @@ export const Form = () => {
                     placeholder='  Email Address/Sign-In ID'
                     onChange={(e) => onChangeValue(e)}
                     value={infoInputUser.email}
+                    autoComplete='off'
                 />
 
                 <label
@@ -69,6 +70,7 @@ export const Form = () => {
                     placeholder='  Password'
                     onChange={(e) => onChangeValue(e)}
                     value={infoInputUser.password}
+                    autoComplete='off'
                 />
             </form>
 
