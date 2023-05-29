@@ -21,7 +21,7 @@ export default function RootLayout({
         <link rel="icon" type="image/x-icon" href="/Mario.png" />
       </head>
       <body className={inter.className}>
-        <Navbar />
+
         <Provider>
           {children}
         </Provider>

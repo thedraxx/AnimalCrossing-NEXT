@@ -16,6 +16,11 @@ module.exports = {
   plugins: [
     'react'
   ],
+  ignorePatterns: [
+    'node_modules',
+    '.next',
+    'next.config.js'
+  ],
   rules: {
   }
 }

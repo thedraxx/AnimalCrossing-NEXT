@@ -49,6 +49,7 @@ export const RegisterForm = () => {
                     id="name"
                     className='w-80 h-12 bg-gray-100 rounded-md shadow-md border-2 border-gray-300 mt-5 '
                     placeholder=' name'
+                    autoComplete='off'
                     onChange={(e) => onChangeValue(e)}
                     value={infoInputUser.name}
                 />
@@ -66,6 +67,7 @@ export const RegisterForm = () => {
                     placeholder='  Email Address'
                     onChange={(e) => onChangeValue(e)}
                     value={infoInputUser.email}
+                    autoComplete='off'
                 />
 
                 <label
@@ -82,6 +84,7 @@ export const RegisterForm = () => {
                     placeholder='  Password'
                     onChange={(e) => onChangeValue(e)}
                     value={infoInputUser.password}
+                    autoComplete='off'
                 />
 
             </form>
