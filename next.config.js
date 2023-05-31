@@ -1,11 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-    experimental: {
-        appDir: true,
-        serverComponentsExternalPackages: ['mongoose']
-
-    }
-}
 
 module.exports = {
     async redirects() {
@@ -20,7 +13,13 @@ module.exports = {
     },
     experimental: {
         appDir: true,
-        serverComponentsExternalPackages: ['mongoose']
+        serverComponentsExternalPackages: ['mongoose'],
 
-    }
+    },
+
+    reactStrictMode: true,
+    images: {
+        domains: ['localhost', 'res.cloudinary.com', "acnhapi.com"],
+    },
+
 }
