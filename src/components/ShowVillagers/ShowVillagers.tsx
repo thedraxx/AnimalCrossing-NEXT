@@ -1,24 +1,19 @@
 "use client"
-import { IVillagers } from '@/interface/iAnimalCrossingAPI'
+import { IVillagers } from '@/interface/IVillagers'
 import Image from 'next/image'
-import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
-
+import React from 'react'
 
 interface IShowVillagers {
     villager: IVillagers
 }
 
-
 const ShowVillagers = ({ villager }: IShowVillagers) => {
-
 
     return (
         <div
+            key={villager.id}
             className='flex flex-col mr-5 ml-5 items-center justify-center w-1/2 p-4 mx-auto my-4 bg-white rounded-md shadow-md sm:w-1/3 md:w-1/4 hover:shadow-lg hover:scale-105 transition-all ease-in-out duration-300 hover:rotate-12'
         >
-
-
             <h1
                 className='text-xl font-bold text-center first-letter:capitalize p-1'
             >
@@ -56,13 +51,11 @@ const ShowVillagers = ({ villager }: IShowVillagers) => {
                 href={`/home/${villager.id}`}
 
             >
-
                 <p
                     className='px-4 py-2 mt-2 text-sm font-medium text-white bg-gray-600 rounded-md hover:bg-gray-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75'
                 >
                     View Details
                 </p>
-
             </a>
         </div>
     )

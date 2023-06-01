@@ -14,6 +14,8 @@ module.exports = {
     experimental: {
         appDir: true,
         serverComponentsExternalPackages: ['mongoose'],
+        transpileModules: ['mongoose'],
+
 
     },
 

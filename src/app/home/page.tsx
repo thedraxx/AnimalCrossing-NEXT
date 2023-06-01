@@ -1,8 +1,8 @@
 import ShowVillagers from '@/components/ShowVillagers/ShowVillagers';
-import { IVillagers } from '@/interface/iAnimalCrossingAPI';
+import { IVillagers } from '@/interface/IVillagers';
 import React from 'react';
 
-const fetchPost = async () => {
+const fetchVilagers = async () => {
     return fetch(`http://acnhapi.com/v1/villagers`,
         {
             next: {
@@ -21,9 +21,9 @@ const fetchPost = async () => {
 
 const HomePage = async () => {
 
-    const post: IVillagers = await fetchPost()
+    const Villagers: IVillagers = await fetchVilagers()
 
-    const arrayVillagers = Object.values(post)
+    const arrayVillagers = Object.values(Villagers)
 
     return (
         <div
@@ -36,24 +36,28 @@ const HomePage = async () => {
             </h1>
             <h2
                 className='text-sm  text-center first-letter:capitalize'
-            > 
+            >
                 the villagers from Animal Crossing
-                </h2>
+            </h2>
             <div
                 className='flex flex-wrap justify-center max-w-4xl mt-6 sm:w-full'
             >
+
                 {
-                    arrayVillagers.map((villager: IVillagers) => (
-                        <>
-                            <ShowVillagers villager={villager} />
-                        </>
-                    ))
+                    arrayVillagers.length > 0 ?
+                        arrayVillagers.splice(1, 30).map((villager: IVillagers) => (
+                            <>
+                                <ShowVillagers villager={villager} />
+                            </>
+                        ))
+                        :
+                        <h1>
+                            Loading...
+                        </h1>
                 }
             </div>
         </div>
     )
 }
-
-
 
 export default HomePage
