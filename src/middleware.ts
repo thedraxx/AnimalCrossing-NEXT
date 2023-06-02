@@ -24,7 +24,6 @@ export async function middleware(request: NextRequest ) {
 
 
   if (request.url.includes('/home')) {
-    console.log('estoy en home')
     const token = request.cookies.get('token')?.value || '';
 
     try {

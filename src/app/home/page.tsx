@@ -1,3 +1,5 @@
+
+import ButtonsPagination from '@/components/ButtonsPagination/ButtonsPagination';
 import ShowVillagers from '@/components/ShowVillagers/ShowVillagers';
 import { IVillagers } from '@/interface/IVillagers';
 import React from 'react';
@@ -19,11 +21,13 @@ const fetchVilagers = async () => {
 }
 
 
+
 const HomePage = async () => {
 
     const Villagers: IVillagers = await fetchVilagers()
 
     const arrayVillagers = Object.values(Villagers)
+
 
     return (
         <div
@@ -45,11 +49,9 @@ const HomePage = async () => {
 
                 {
                     arrayVillagers.length > 0 ?
-                        arrayVillagers.splice(1, 30).map((villager: IVillagers) => (
-                            <>
-                                <ShowVillagers villager={villager} />
-                            </>
-                        ))
+                        <>
+                            <ShowVillagers arrayVillagers={arrayVillagers} />
+                        </>
                         :
                         <h1>
                             Loading...
